@@ -1,0 +1,2116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EchoSphere | Premium Video Branding Agency</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dark: #0A0A0A;
+            --darker: #050505;
+            --accent: #94DC51;
+            --accent-secondary: #C0F576;
+            --accent-light: rgba(148, 220, 81, 0.15);
+            --glass: rgba(15, 15, 15, 0.7);
+            --text: #F0F0F0;
+            --text-light: #B0B0B0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--dark);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Animated Gradient Background */
+        .gradient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: linear-gradient(-45deg, #0A0A0A, #050505, #1A1A1A, #0F0F0F);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Particles */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            top: 0;
+            left: 0;
+        }
+        
+        /* Glass Morphism */
+        .glass {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.5s ease;
+        }
+        
+        .glass:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+        
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            transition: all 0.3s;
+        }
+        
+        header.scrolled {
+            background: rgba(10, 10, 10, 0.9);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            padding: 15px 5%;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: all 0.3s;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+            position: relative;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+        
+        nav a:hover {
+            color: var(--accent);
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        .cta-button {
+            background: linear-gradient(90deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            color: var(--dark);
+            border: none;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: all 0.5s;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(148, 220, 81, 0.3);
+        }
+        
+        .cta-button:hover::before {
+            left: 100%;
+        }
+        
+        /* Search Bar */
+        .search-container {
+            position: relative;
+        }
+        
+        .search-input {
+            padding: 10px 15px;
+            border-radius: 50px;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            width: 200px;
+            padding-right: 40px;
+            transition: all 0.3s;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            width: 250px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .search-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+        }
+        
+        .search-results {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 250px;
+            max-height: 300px;
+            overflow-y: auto;
+            background: var(--darker);
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            display: none;
+            z-index: 101;
+        }
+        
+        .search-result-item {
+            padding: 10px 15px;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .search-result-item:hover {
+            background: var(--accent-light);
+            color: var(--text);
+        }
+        
+        /* Mega Menu */
+        .mega-menu {
+            display: none;
+            position: absolute;
+            left: 0;
+            width: 100%;
+            padding: 2rem 5%;
+            background: var(--darker);
+            border-top: 1px solid var(--accent-light);
+            border-bottom: 1px solid var(--accent-light);
+            z-index: 99;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        nav li:hover .mega-menu {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+        
+        .mega-menu-column h4 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .mega-menu-links {
+            list-style: none;
+        }
+        
+        .mega-menu-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .mega-menu-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .mega-menu-links a:hover {
+            color: var(--accent);
+        }
+        
+        /* Hero Showcase - Split Layout */
+        .hero-showcase {
+            height: 110vh;
+            display: flex;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+        
+        .split-layout {
+            display: flex;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .hero-content {
+            flex: 1;
+            padding: 0 5%;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .hero-content h1 {
+            font-size: clamp(3rem, 6vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, #FFFFFF 0%, #B0B0B0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .hero-content p {
+            color: var(--text-light);
+            margin-bottom: 2.5rem;
+            font-size: 1.1rem;
+            max-width: 500px;
+            animation: fadeInUp 1s ease 0.2s;
+            animation-fill-mode: both;
+        }
+        
+        .visual-panel {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .color-block {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 80%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);
+            z-index: 1;
+            animation: slideInRight 1s ease;
+        }
+        
+        .laptop-mockup {
+            position: absolute;
+            top: 50%;
+            right: 15%;
+            transform: translateY(-50%);
+            width: 70%;
+            max-width: 800px;
+            z-index: 2;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+            animation: fadeIn 1s ease 0.5s;
+            animation-fill-mode: both;
+        }
+        
+        .laptop-mockup img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border: 12px solid #0A0A0A;
+            border-radius: 12px;
+        }
+        
+        /* Stats */
+        .stats {
+            display: flex;
+            gap: 2rem;
+            margin: 3rem 0;
+            animation: fadeInUp 1s ease 0.4s;
+            animation-fill-mode: both;
+        }
+        
+        .stat-item {
+            padding: 1.5rem;
+            border-radius: 12px;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-item div:last-child {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        /* Video Portfolio */
+        .video-portfolio {
+            padding: 6rem 5%;
+            background: var(--darker);
+            position: relative;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .section-title {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, #FFFFFF 0%, #B0B0B0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInUp 0.8s ease;
+        }
+        
+        .section-subtitle {
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            animation: fadeInUp 0.8s ease 0.2s;
+            animation-fill-mode: both;
+        }
+        
+        .portfolio-filter {
+            display: flex;
+            gap: 1rem;
+            margin: 2rem 0 3rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.4s;
+            animation-fill-mode: both;
+        }
+        
+        .filter-btn {
+            background: transparent;
+            color: var(--text-light);
+            border: 1px solid var(--text-light);
+            padding: 8px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn.active {
+            background: var(--accent);
+            color: var(--dark);
+            border-color: var(--accent);
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            animation: fadeInUp 0.8s ease 0.6s;
+            animation-fill-mode: both;
+        }
+        
+        .portfolio-item {
+            transition: all 0.3s;
+        }
+        
+        .portfolio-item.hidden {
+            display: none;
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .video-thumbnail {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+        
+        .video-thumbnail img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: all 0.3s;
+        }
+        
+        .portfolio-item:hover .video-thumbnail img {
+            transform: scale(1.05);
+        }
+        
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(148, 220, 81, 0.8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 2;
+        }
+        
+        .play-icon i {
+            color: var(--dark);
+            font-size: 1.5rem;
+            margin-left: 5px;
+        }
+        
+        .portfolio-item:hover .play-icon {
+            opacity: 1;
+        }
+        
+        .video-link {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        
+        .portfolio-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+        
+        .portfolio-item p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        .show-more-btn {
+            background: transparent;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 12px 30px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 2rem auto 0;
+            display: block;
+            font-weight: 600;
+            animation: fadeInUp 0.8s ease 0.8s;
+            animation-fill-mode: both;
+        }
+        
+        .show-more-btn:hover {
+            background: var(--accent);
+            color: var(--dark);
+        }
+        
+        /* Process Timeline */
+        .process {
+            padding: 6rem 5%;
+            position: relative;
+            background: var(--dark);
+        }
+        
+        .process::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: var(--accent-light);
+        }
+        
+        .process-item {
+            position: relative;
+            max-width: 500px;
+            margin: 0 auto 3rem;
+            padding: 2rem;
+            border-radius: 12px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+        
+        .process-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .process-item:nth-child(odd) {
+            margin-left: auto;
+            text-align: right;
+        }
+        
+        .process-item:nth-child(even) {
+            margin-right: auto;
+            text-align: left;
+        }
+        
+        .process-number {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: var(--accent);
+            color: var(--dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.5rem;
+        }
+        
+        .process-item:nth-child(even) .process-number {
+            left: -75px;
+        }
+        
+        .process-item:nth-child(odd) .process-number {
+            right: -75px;
+        }
+        
+        .process-item h3 {
+            color: var(--text);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .process-item p {
+            color: var(--text-light);
+        }
+        
+        /* Pricing */
+        .pricing {
+            padding: 6rem 5%;
+            background: var(--dark);
+        }
+        
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .pricing-card {
+            padding: 2.5rem;
+            border-radius: 16px;
+            transition: all 0.3s;
+            transform: translateY(20px);
+            opacity: 0;
+        }
+        
+        .pricing-card.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .pricing-card.popular {
+            border: 1px solid var(--accent);
+            position: relative;
+        }
+        
+        .popular-tag {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: var(--accent);
+            color: var(--dark);
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+        
+        .plan-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+        
+        .plan-price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .plan-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        
+        .plan-features li {
+            padding: 0.5rem 0;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+        }
+        
+        .plan-features li::before {
+            content: "✓";
+            color: var(--accent);
+            margin-right: 0.8rem;
+            font-weight: bold;
+        }
+        
+        /* Team Section - Horizontal Slider */
+        .team {
+            padding: 6rem 5%;
+            background: var(--darker);
+            overflow: hidden;
+        }
+        
+        .team-slider {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding-bottom: 2rem;
+            margin-top: 3rem;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .team-slider::-webkit-scrollbar {
+            height: 8px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+        }
+        
+        .team-slider::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 10px;
+        }
+        
+        .team-card {
+            flex: 0 0 300px;
+            scroll-snap-align: start;
+            text-align: center;
+            padding: 2rem;
+            border-radius: 12px;
+            transition: all 0.3s;
+            transform: translateY(20px);
+            opacity: 0;
+        }
+        
+        .team-card.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .team-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .team-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent);
+            margin: 0 auto 1rem;
+            transition: all 0.3s;
+            background: #333;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            font-weight: bold;
+        }
+        
+        .team-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .team-card:hover .team-avatar {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(148, 220, 81, 0.3);
+        }
+        
+        .team-card h3 {
+            color: var(--text);
+            font-size: 1.3rem;
+            margin-bottom: 0.3rem;
+        }
+        
+        .team-card p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 6rem 5%;
+            background: var(--dark);
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .testimonial-card {
+            padding: 2rem;
+            border-radius: 12px;
+            position: relative;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+        
+        .testimonial-card.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .quote {
+            font-size: 1.1rem;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+        }
+        
+        .client {
+            display: flex;
+            align-items: center;
+        }
+        
+        .client-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--accent-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            color: var(--accent);
+            font-weight: 700;
+        }
+        
+        .client-info h4 {
+            font-weight: 700;
+            margin-bottom: 0.2rem;
+            color: var(--text);
+        }
+        
+        .client-info p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 6rem 5%;
+            background: var(--dark);
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .contact-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            border-radius: 12px;
+            transition: all 0.3s;
+            transform: translateY(20px);
+            opacity: 0;
+        }
+        
+        .contact-card.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .contact-card:hover {
+            background: var(--accent-light);
+        }
+        
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--dark);
+        }
+        
+        .contact-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+        }
+        
+        .contact-info a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .contact-info a:hover {
+            color: var(--accent);
+        }
+        
+        /* Footer */
+        footer {
+            padding: 4rem 5%;
+            text-align: center;
+            background: var(--darker);
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            background: linear-gradient(90deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .social-links a {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-top: 2rem;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        /* NEW STYLES FOR ADDED FEATURES */
+        
+        /* Plan Details Modal */
+        .plan-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+        
+        .plan-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .plan-modal-content {
+            background: var(--darker);
+            border-radius: 16px;
+            max-width: 600px;
+            width: 90%;
+            padding: 2rem;
+            position: relative;
+            transform: translateY(50px);
+            transition: all 0.3s;
+            border: 1px solid var(--accent);
+        }
+        
+        .plan-modal.active .plan-modal-content {
+            transform: translateY(0);
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.5rem;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .close-modal:hover {
+            color: var(--accent);
+            transform: rotate(90deg);
+        }
+        
+        .plan-modal-title {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+        
+        .plan-modal-price {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .plan-modal-features {
+            margin-bottom: 2rem;
+        }
+        
+        .plan-modal-features li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .plan-modal-features li i {
+            color: var(--accent);
+            margin-right: 0.8rem;
+        }
+        
+        .plan-modal-form input,
+        .plan-modal-form textarea {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            border: none;
+            background: rgba(255,255,255,0.1);
+            color: white;
+        }
+        
+        .plan-modal-form input:focus,
+        .plan-modal-form textarea:focus {
+            outline: none;
+            background: rgba(255,255,255,0.2);
+        }
+        
+        /* Floating Elements Animation */
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--accent-light);
+            filter: blur(40px);
+            z-index: -1;
+            opacity: 0.5;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .mega-menu {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .split-layout {
+                flex-direction: column;
+            }
+            
+            .hero-content {
+                padding: 5rem 5% 3rem;
+                text-align: center;
+                align-items: center;
+            }
+            
+            .hero-content p {
+                max-width: 100%;
+            }
+            
+            .visual-panel {
+                height: 50vh;
+            }
+            
+            .color-block {
+                width: 100%;
+                clip-path: polygon(0 20%, 100% 0, 100% 100%, 0% 100%);
+            }
+            
+            .laptop-mockup {
+                right: 50%;
+                transform: translate(50%, -50%);
+                width: 80%;
+            }
+            
+            .stats {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            .stat-item {
+                min-width: 120px;
+                margin: 0.5rem;
+            }
+            
+            .process::before {
+                left: 40px;
+            }
+            
+            .process-item,
+            .process-item:nth-child(odd) {
+                margin-left: 80px;
+                text-align: left;
+                margin-right: 0;
+            }
+            
+            .process-number {
+                left: -75px !important;
+                right: auto !important;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+            
+            .mega-menu {
+                display: none !important;
+            }
+            
+            .laptop-mockup {
+                display: none;
+            }
+            
+            .visual-panel {
+                display: none;
+            }
+            
+            .hero-content {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .stats {
+                flex-direction: row;
+                gap: 1rem;
+            }
+            
+            .process-item,
+            .process-item:nth-child(odd) {
+                margin-left: 60px;
+            }
+            
+            .process-number {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+                left: -60px !important;
+            }
+            
+            .search-input {
+                width: 150px;
+            }
+            
+            .search-input:focus {
+                width: 180px;
+            }
+            
+            .team-card {
+                flex: 0 0 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background Elements -->
+    <div class="gradient-bg"></div>
+    <div id="particles-js"></div>
+    
+    <!-- Floating Elements -->
+    <div class="floating-element" style="width: 300px; height: 300px; top: 10%; left: 5%; animation: float 15s ease-in-out infinite;"></div>
+    <div class="floating-element" style="width: 200px; height: 200px; bottom: 15%; right: 10%; animation: float 12s ease-in-out infinite reverse;"></div>
+    <div class="floating-element" style="width: 250px; height: 250px; top: 30%; right: 20%; animation: float 18s ease-in-out infinite 2s;"></div>
+    
+    <!-- Header with Mega Menu -->
+    <header class="glass">
+        <div class="logo">EchoSphere</div>
+        <nav>
+            <ul>
+                <li>
+                    <a href="#">Services <i class="fas fa-chevron-down"></i></a>
+                    <div class="mega-menu">
+                        <div class="mega-menu-column">
+                            <h4>Video Production</h4>
+                            <ul class="mega-menu-links">
+                                <li><a href="#">Commercial Videos</a></li>
+                                <li><a href="#">Social Media Content</a></li>
+                                <li><a href="#">Corporate Films</a></li>
+                                <li><a href="#">Animation</a></li>
+                            </ul>
+                        </div>
+                        <div class="mega-menu-column">
+                            <h4>Editing</h4>
+                            <ul class="mega-menu-links">
+                                <li><a href="#">Premium Color Grading</a></li>
+                                <li><a href="#">Motion Graphics</a></li>
+                                <li><a href="#">VFX Compositing</a></li>
+                                <li><a href="#">Audio Enhancement</a></li>
+                            </ul>
+                        </div>
+                        <div class="mega-menu-column">
+                            <h4>Strategy</h4>
+                            <ul class="mega-menu-links">
+                                <li><a href="#">Content Planning</a></li>
+                                <li><a href="#">Brand Storytelling</a></li>
+                                <li><a href="#">Platform Optimization</a></li>
+                            </ul>
+                        </div>
+                        <div class="mega-menu-column">
+                            <h4>Special Offers</h4>
+                            <ul class="mega-menu-links">
+                                <li><a href="#">Startup Package</a></li>
+                                <li><a href="#">Influencer Collab</a></li>
+                                <li><a href="#">Monthly Retainer</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#process">Process</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Search...">
+            <i class="fas fa-search search-icon"></i>
+            <div class="search-results"></div>
+        </div>
+    </header>
+    
+    <!-- Hero Showcase - Split Layout -->
+    <section class="hero-showcase">
+        <div class="split-layout">
+            <div class="hero-content">
+                <h1>Convert Your Business Into a Recognizable Brand</h1>
+                <p>Premium video production services tailored for Uttar Pradesh's growing businesses and creators.</p>
+                <button class="cta-button" id="consultation-btn">Book Free Consultation</button>
+                
+                <div class="stats">
+                    <div class="stat-item glass">
+                        <div class="stat-number" id="client-count">0</div>
+                        <div>Happy Clients</div>
+                    </div>
+                    <div class="stat-item glass">
+                        <div class="stat-number" id="reach-count">0</div>
+                        <div>Total Reach</div>
+                    </div>
+                    <div class="stat-item glass">
+                        <div class="stat-number" id="users-count">0</div>
+                        <div>New Users (30 Days)</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="visual-panel">
+                <div class="color-block"></div>
+                <div class="laptop-mockup">
+                                   </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Video Portfolio -->
+    <section class="video-portfolio" id="portfolio">
+        <div class="container">
+            <h2 class="section-title">Our Signature Work</h2>
+            <p class="section-subtitle">Projects that made brands unforgettable</p>
+            
+            <div class="portfolio-filter">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="cinematic">Cinematic Commercial (1)</button>
+                <button class="filter-btn" data-filter="speedramp">Speed Ramp (2)</button>
+                <button class="filter-btn" data-filter="social">Social Media Edits (5)</button>
+                <button class="filter-btn" data-filter="shortform">Short Form (3)</button>
+            </div>
+            
+            <div class="portfolio-grid">
+                <!-- 1 CINEMATIC COMMERCIAL -->
+                <div class="portfolio-item" data-category="cinematic">
+                    <div class="video-thumbnail">
+                        <img src="https://i.postimg.cc/90g8BGbm/1.png" alt="cinematic commercial videos">
+                        <div class="play-icon"><i class="fas fa-play"></i></div>
+                        <a href="https://youtu.be/DVdMsTrJJ94?si=QhF5eqeNFNccZRud" target="_blank" class="video-link"></a>
+                    </div>
+                    <h3>cinematic promotional shoot and edit</h3>
+                    <p>60s cinematic commercial</p>
+                </div>
+
+                <!-- 2 SPEED RAMP VIDEOS -->
+                <div class="portfolio-item" data-category="speedramp">
+                    <div class="video-thumbnail">
+                        <img src="https://i.postimg.cc/0Q4TZRcK/Pink-Aesthetic-Creative-Minimalist-Portfolio-Cover-A4.png" alt="Speed ramp commercial edits">
+                        <div class="play-icon"><i class="fas fa-play"></i></div>
+                        <a href="https://youtube.com/shorts/21RAYB9zoUE?si=1x9gEgoBhsDFkH9p" target="_blank" class="video-link"></a>
+                    </div>
+                    <h3>smooth speed ramp edits</h3>
+                    <p>Speed ramp</p>
+                </div>
+
+                <div class="portfolio-item" data-category="speedramp">
+                    <div class="video-thumbnail">
+                        <img src="https://i.postimg.cc/kXT4CD1x/Pink-Aesthetic-Creative-Minimalist-Portfolio-Cover-A4-1.png"Product Reveal">
+                        <div class="play-icon"><i class="fas fa-play"></i></div>
+                        <a href="https://youtube.com/shorts/keSM92HdFfY?si=WuSuxca3G-tJmjdi"_blank" class="video-link"></a>
+                    </div>
+                     <h3>smooth speed ramp edits</h3>
+                    <p>Speed ramp</p>
+                </div>
+
+                <!-- 5 SOCIAL MEDIA EDITS -->
+                <div class="portfolio-item hidden" data-category="social">
+                    <div class="video-thumbnail">
+                        <img src="https://i.postimg.cc/kXT4CD1x/Pink-Aesthetic-Creative-Minimalist-Portfolio-Cover-A4-1.png" alt="Restaurant Reel">
+                        <div class="play-icon"><i class="fas fa-play"></i></div>
+                        <a href="https://youtube.com/shorts/GliytqvV4MA?si=zdWBBc3-mMvLJPYn" target="_blank" class="video-link"></a>
+                    </div>
+                    <h3>social media efx edits</h3>
+                    <p>30 seconds reel</p>
+                </div>
+                
+                <div class="portfolio-item hidden" data-category="social">
+                    <div class="video-thumbnail">
+                        <img src="https://i.postimg.cc/kXT4CD1x/Pink-Aesthetic-Creative-Minimalist-Portfolio-Cover-A4-1.png" alt="Fashion Reel">
+                        <div class="play-icon"><i class="fas fa-play"></i></div>
+                        <a href="https://youtube.com/shorts/iXKupOcBopA?si=lbByHZ4k5nQa3RdJ" target="_blank" class="video-link"></a>
+                    </div>
+                    <h3>social media efx edits</h3>
+                    <p>30 seconds reel</p>
+                </div>
+                
+                <div class="portfolio-item hidden" data-category="social">
+                    <div class="video-thumbnail">
+                        <img src="https://i.postimg.cc/kXT4CD1x/Pink-Aesthetic-Creative-Minimalist-Portfolio-Cover-A4-1.png" alt="Food Reel">
+                        <div class="play-icon"><i class="fas fa-play"></i></div>
+                        <a href="https://youtube.com/shorts/VyElGEhiBwg?si=fhZ_mb-KI7K8uTjO" target="_blank" class="video-link"></a>
+                    </div>
+                    <h3>social media efx edits</h3>
+                    <p>30 seconds reel</p>
+                </div>
+                
+                <div class="portfolio-item hidden" data-category="social">
+                    <div class="video-thumbnail">
+                        <img src="https://i.postimg.cc/kXT4CD1x/Pink-Aesthetic-Creative-Minimalist-Portfolio-Cover-A4-1.png" alt="Recipe Reel">
+                        <div class="play-icon"><i class="fas fa-play"></i></div>
+                        <a href="https://youtube.com/shorts/wn8L-6sEE0I?si=W8h7srkr0i4OW_jM" target="_blank" class="video-link"></a>
+                    </div>
+                    <h3>social media efx edits</h3>
+                    <p>30 seconds reel</p>
+                </div>
+                
+                <div class="portfolio-item hidden" data-category="social">
+                    <div class="video-thumbnail">
+                        <img src="https://i.postimg.cc/kXT4CD1x/Pink-Aesthetic-Creative-Minimalist-Portfolio-Cover-A4-1.png" alt="Burger Reel">
+                        <div class="play-icon"><i class="fas fa-play"></i></div>
+                        <a href="https://youtube.com/shorts/OA-bZ0RjXh0?si=vPfM4An9nLxCC0tk" target="_blank" class="video-link"></a>
+                    </div>
+                    <h3>social media efx edits</h3>
+                    <p>30 seconds reel</p>
+                </div>
+
+                <!-- 2 SHORT FORM VIDEOS -->
+
+                <div class="portfolio-item hidden" data-category="shortform">
+                    <div class="video-thumbnail">
+                        <img src="https://i.postimg.cc/6qkN6JZx/Pink-Aesthetic-Creative-Minimalist-Portfolio-Cover-A4-2.png" alt="DIY Hack">
+                        <div class="play-icon"><i class="fas fa-play"></i></div>
+                        <a href="https://youtube.com/shorts/dtNId0G-DE4?si=K83XjhZsl06zQyqH" class="video-link"></a>
+                    </div>
+                    <h3>short form content creation</h3>
+                    <p>faceless short form edits</p>
+                </div>
+                
+                <div class="portfolio-item hidden" data-category="shortform">
+                    <div class="video-thumbnail">
+                        <img src="https://i.postimg.cc/6qkN6JZx/Pink-Aesthetic-Creative-Minimalist-Portfolio-Cover-A4-2.png" alt="Tech Tip">
+                        <div class="play-icon"><i class="fas fa-play"></i></div>
+                        <a href="https://youtube.com/shorts/xy6JzxoZenU?si=CP1AYu2sx288vnby"_blank" class="video-link"></a>
+                    </div>
+                    <h3>Tech Tip</h3>
+                    <p>Smartphone trick</p>
+                </div>
+            </div>
+            
+            <button class="show-more-btn">Show More</button>
+            <button class="cta-button" style="margin: 3rem auto 0; display: none;" id="view-full-portfolio">View Full Portfolio</button>
+        </div>
+    </section>
+    
+    <!-- Process Timeline -->
+    <section class="process" id="process">
+        <div class="container">
+            <h2 class="section-title">Our Proven Process</h2>
+            <p class="section-subtitle">How we create magic for your brand</p>
+            
+            <div class="process-item glass">
+                <div class="process-number">1</div>
+                <h3>Discovery Call</h3>
+                <p>We learn about your brand, goals, and vision for the project through an in-depth consultation.</p>
+            </div>
+            
+            <div class="process-item glass">
+                <div class="process-number">2</div>
+                <h3>Creative Strategy</h3>
+                <p>Our team develops a customized content plan with mood boards and style frames.</p>
+            </div>
+            
+            <div class="process-item glass">
+                <div class="process-number">3</div>
+                <h3>Production</h3>
+                <p>Filming with professional equipment or animation development based on your package.</p>
+            </div>
+            
+            <div class="process-item glass">
+                <div class="process-number">4</div>
+                <h3>Post-Production</h3>
+                <p>Editing, color grading, sound design, and motion graphics implementation.</p>
+            </div>
+            
+            <div class="process-item glass">
+                <div class="process-number">5</div>
+                <h3>Delivery & Optimization</h3>
+                <p>We provide platform-optimized files and performance analytics.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Pricing -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2 class="section-title">Simple, Transparent Pricing</h2>
+            <p class="section-subtitle">Choose the perfect plan for your brand's needs</p>
+            
+            <div class="pricing-cards">
+                <!-- Single Video -->
+                <div class="pricing-card glass">
+                    <h3 class="plan-name">Single Video</h3>
+                    <div style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 0.5rem;">starting from</div>
+                    <div class="plan-price" id="single-video-price">₹2,000</div>
+                    <ul class="plan-features">
+                        <li>Professional FHD videos</li>
+                        <li>Up to 1 Revision</li>
+                        <li>72-Hour Delivery</li>
+                        <li>Basic Color Correction</li>
+                        <li>Social Media Optimization</li>
+                    </ul>
+                    <button class="cta-button choose-plan-btn" data-plan="Single Video" style="width: 100%;">Choose Plan</button>
+                </div>
+                
+                <!-- 4-Video Package -->
+                <div class="pricing-card glass">
+                    <h3 class="plan-name">4-Video Package</h3>
+                    <div style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 0.5rem;">starting from</div>
+                    <div class="plan-price" id="four-video-price">₹8,000</div>
+                    <ul class="plan-features">
+                        <li>4K Resolution Available</li>
+                        <li>Up to 3 Revisions per Video</li>
+                        <li>48-Hour Priority Support</li>
+                        <li>Advanced Color Grading</li>
+                        <li>Custom Motion Graphics</li>
+                        <li>Save 20%</li>
+                    </ul>
+                    <button class="cta-button choose-plan-btn" data-plan="4-Video Package" style="width: 100%;">Choose Plan</button>
+                </div>
+                
+                <!-- Monthly Management (Popular) -->
+                <div class="pricing-card glass popular">
+                    <div class="popular-tag">MOST POPULAR</div>
+                    <h3 class="plan-name">Monthly Management</h3>
+                    <div style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 0.5rem;">starting from</div>
+                    <div class="plan-price" id="monthly-price">₹10,000</div>
+                    <ul class="plan-features">
+                        <li>6 Videos per Month</li>
+                        <li>Dedicated Social Media Growth Manager</li>
+                        <li>Regular Posts</li>
+                        <li>Cinematic Color Treatment</li>
+                        <li>Motion Graphics</li>
+                        <li>Save 33%</li>
+                    </ul>
+                    <button class="cta-button choose-plan-btn" data-plan="Monthly Management" style="width: 100%;">Choose Plan</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Team Section - Horizontal Slider -->
+    <section class="team" id="team">
+        <div class="container">
+            <h2 class="section-title">Meet The Creators</h2>
+            <p class="section-subtitle">The talent behind EchoSphere's magic</p>
+            
+            <div class="team-slider">
+                <div class="team-card glass">
+                    <div class="team-avatar">AG</div>
+                    <h3>Ayush Gupta</h3>
+                    <p>Founder & Video Editing Head</p>
+                </div>
+                
+                <div class="team-card glass">
+                    <div class="team-avatar">SS</div>
+                    <h3>Saurabh Sharma</h3>
+                    <p>Videography</p>
+                </div>
+                
+                <div class="team-card glass">
+                    <div class="team-avatar">TS</div>
+                    <h3>Tanisha Singh</h3>
+                    <p>Graphics Designing</p>
+                </div>
+                
+                <div class="team-card glass">
+                    <div class="team-avatar">SS</div>
+                    <h3>Samarth Soni</h3>
+                    <p>Video Editing</p>
+                </div>
+                
+                <div class="team-card glass">
+                    <div class="team-avatar">VR</div>
+                    <h3>Vansh Rajput</h3>
+                    <p>Web Designing</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">Trusted by Uttar Pradesh's Best</h2>
+            <p class="section-subtitle">Don't just take our word for it</p>
+            
+            <div class="testimonial-grid">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card glass">
+                    <div class="quote">
+                        "I’ve worked with a few marketing people before, but these guys really stood out. They took time to understand my channel, my content style, and what I was trying to build. The edits were clean, the thumbnails sharp, and the way they helped me position my videos for better reach — next level. I wasn’t expecting such quick results, but within a month, my subscribers and watch time both saw visible growth. Real value for money."
+                    </div>
+                    <div class="client">
+                        <div class="client-avatar">RJ</div>
+                        <div class="client-info">
+                            <h4>Rishabh Jain</h4>
+                            <p>TechTalk India</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card glass">
+                    <div class="quote">
+                        "I had been struggling with low engagement on my Instagram for a while. When I reached out to their team, I honestly didn’t expect much, but they created a custom strategy just for my content. Within 2-3 weeks, I started noticing a real difference. What I liked the most is how they paid attention to the little things — from reel edits to the captions. I’d definitely recommend them to any growing creator."
+                    </div>
+                    <div class="client">
+                        <div class="client-avatar">PM</div>
+                        <div class="client-info">
+                            <h4>Priya Mishra</h4>
+                            <p>UP Food Diaries, Varanasi</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card glass">
+                    <div class="quote">
+                        "At first, we just wanted a single promotional video, but after seeing their work, we decided to continue monthly. the team created reels, stories, and even small campaigns that made a big difference. In just two months, our footfall almost doubled. Everything was within budget and their effort shows in every piece of content they deliver."
+                    </div>
+                    <div class="client">
+                        <div class="client-avatar">BW</div>
+                        <div class="client-info">
+                            <h4>Manager</h4>
+                            <p>Cafe Bakewalk, Lucknow</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="section-subtitle">We'd love to hear about your project</p>
+            
+            <div class="contact-grid">
+                <div class="contact-card glass">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="contact-info">
+                        <h3>Call Us</h3>
+                        <a href="tel:+9194561746216">+91 94517 46216</a>
+                    </div>
+                </div>
+                
+                <div class="contact-card glass">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-info">
+                        <h3>Email Us</h3>
+                        <a href="mailto:echosphere.stu@gmail.com">echosphere.stu@gmail.com</a>
+                    </div>
+                </div>
+                
+                <div class="contact-card glass">
+                    <div class="contact-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <div class="contact-info">
+                        <h3>Follow Us</h3>
+                        <a href="https://instagram.com/echosphere.stu" target="_blank">@echosphere.stu</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-logo">EchoSphere</div>
+            <div class="footer-links">
+                <a href="#">Home</a>
+                <a href="#portfolio">Portfolio</a>
+                <a href="#process">Process</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#team">Team</a>
+                <a href="#contact">Contact</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+            <div class="social-links">
+                <a href="https://wa.me/919451746216" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://instagram.com/echosphere.stu" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="mailto:echosphere.stu@gmail.com"><i class="fas fa-envelope"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+            <div class="copyright">
+                &copy; 2023 EchoSphere Video Branding Agency. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Plan Details Modal -->
+    <div class="plan-modal" id="planModal">
+        <div class="plan-modal-content glass">
+            <span class="close-modal">&times;</span>
+            <h2 class="plan-modal-title" id="modalPlanName">Plan Name</h2>
+            <div class="plan-modal-price" id="modalPlanPrice">₹0</div>
+            
+            <ul class="plan-modal-features" id="modalPlanFeatures">
+                <!-- Features will be added dynamically -->
+            </ul>
+            
+            <h3 style="margin-bottom: 1rem; color: var(--accent);">Get Started</h3>
+            <form class="plan-modal-form">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Email Address" required>
+                <input type="tel" placeholder="Phone Number" required>
+                <textarea placeholder="Tell us about your project..." rows="3"></textarea>
+                <button type="submit" class="cta-button" style="width: 100%;">Submit Request</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Particles.js Library -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    
+    <script>
+        // Initialize particles.js
+        particlesJS("particles-js", {
+            "particles": {
+                "number": {
+                    "value": 120,
+                    "density": {
+                        "enable": true,
+                        "value_area": 1000
+                    }
+                },
+                "color": {
+                    "value": "#94DC51"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    },
+                    "polygon": {
+                        "nb_sides": 5
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": false,
+                    "anim": {
+                        "enable": false,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": false,
+                        "speed": 40,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#94DC51",
+                    "opacity": 0.3,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 3,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": false,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "grab"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 140,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "bubble": {
+                        "distance": 400,
+                        "size": 40,
+                        "duration": 2,
+                        "opacity": 8,
+                        "speed": 3
+                    },
+                    "repulse": {
+                        "distance": 200,
+                        "duration": 0.4
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    },
+                    "remove": {
+                        "particles_nb": 2
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Search functionality
+        const searchInput = document.querySelector('.search-input');
+        const searchResults = document.querySelector('.search-results');
+        
+        // All searchable items with their corresponding section IDs
+        const searchItems = [
+            { text: 'Services', target: 'services' },
+            { text: 'Portfolio', target: 'portfolio' },
+            { text: 'Process', target: 'process' },
+            { text: 'Pricing', target: 'pricing' },
+            { text: 'Team', target: 'team' },
+            { text: 'Contact', target: 'contact' },
+            { text: 'Single Video Package', target: 'pricing' },
+            { text: '4-Video Package', target: 'pricing' },
+            { text: 'Monthly Management', target: 'pricing' },
+            { text: 'Commercial Videos', target: 'portfolio' },
+            { text: 'Social Media Content', target: 'portfolio' },
+            { text: 'Corporate Films', target: 'portfolio' }
+        ];
+        
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            searchResults.innerHTML = '';
+            
+            if (searchTerm.length > 0) {
+                const filteredItems = searchItems.filter(item => 
+                    item.text.toLowerCase().includes(searchTerm)
+                );
+                
+                if (filteredItems.length > 0) {
+                    filteredItems.forEach(item => {
+                        const resultItem = document.createElement('div');
+                        resultItem.classList.add('search-result-item');
+                        resultItem.textContent = item.text;
+                        resultItem.addEventListener('click', function() {
+                            document.getElementById(item.target).scrollIntoView({
+                                behavior: 'smooth'
+                            });
+                            searchInput.value = '';
+                            searchResults.style.display = 'none';
+                        });
+                        searchResults.appendChild(resultItem);
+                    });
+                    searchResults.style.display = 'block';
+                } else {
+                    const noResults = document.createElement('div');
+                    noResults.classList.add('search-result-item');
+                    noResults.textContent = 'No results found';
+                    searchResults.appendChild(noResults);
+                    searchResults.style.display = 'block';
+                }
+            } else {
+                searchResults.style.display = 'none';
+            }
+        });
+        
+        // Close search results when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.search-container')) {
+                searchResults.style.display = 'none';
+            }
+        });
+        
+        // Portfolio filter functionality
+        document.querySelectorAll('.filter-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                const filter = button.getAttribute('data-filter');
+                const items = document.querySelectorAll('.portfolio-item');
+                
+                items.forEach(item => {
+                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+                
+                // After filtering, show only first 3 items if "All" is selected
+                if (filter === 'all') {
+                    const allItems = document.querySelectorAll('.portfolio-item');
+                    allItems.forEach((item, index) => {
+                        if (index >= 3) {
+                            item.classList.add('hidden');
+                        }
+                    });
+                    document.querySelector('.show-more-btn').style.display = 'block';
+                    document.querySelector('#view-full-portfolio').style.display = 'none';
+                }
+            });
+        });
+
+        // Show more functionality for portfolio
+        const showMoreBtn = document.querySelector('.show-more-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+        const viewFullPortfolioBtn = document.querySelector('#view-full-portfolio');
+        
+        showMoreBtn.addEventListener('click', function() {
+            // Show all hidden items
+            document.querySelectorAll('.portfolio-item.hidden').forEach(item => {
+                item.classList.remove('hidden');
+            });
+            
+            // Hide show more button and show view full portfolio button
+            this.style.display = 'none';
+            viewFullPortfolioBtn.style.display = 'block';
+        });
+
+        // WhatsApp consultation button functionality
+        document.getElementById('consultation-btn').addEventListener('click', function() {
+            const phoneNumber = '919451746216';
+            const message = encodeURIComponent("Hi EchoSphere team! I'm interested in a free consultation about your video branding services. Please contact me to schedule a call or reply back to have conversation over text!");
+            window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+        });
+
+        // Number counting animation
+        function animateValue(id, start, end, duration, suffix = '') {
+            const obj = document.getElementById(id);
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const value = Math.floor(progress * (end - start) + start);
+                obj.innerHTML = value.toLocaleString() + suffix;
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Plan Modal functionality
+        const planModal = document.getElementById('planModal');
+        const closeModal = document.querySelector('.close-modal');
+        const choosePlanBtns = document.querySelectorAll('.choose-plan-btn');
+        
+        choosePlanBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const planName = this.getAttribute('data-plan');
+                const planPrice = this.parentElement.querySelector('.plan-price').textContent;
+                const planFeatures = Array.from(this.parentElement.querySelectorAll('.plan-features li')).map(li => li.textContent);
+                
+                document.getElementById('modalPlanName').textContent = planName;
+                document.getElementById('modalPlanPrice').textContent = planPrice;
+                
+                const featuresList = document.getElementById('modalPlanFeatures');
+                featuresList.innerHTML = '';
+                
+                planFeatures.forEach(feature => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<i class="fas fa-check"></i> ${feature}`;
+                    featuresList.appendChild(li);
+                });
+                
+                planModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+        
+        closeModal.addEventListener('click', function() {
+            planModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+        
+        window.addEventListener('click', function(e) {
+            if (e.target === planModal) {
+                planModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Form submission
+        document.querySelector('.plan-modal-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your request! We will contact you shortly.');
+            planModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            this.reset();
+        });
+
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    
+                    // Animate stats when they come into view
+                    if (entry.target.classList.contains('stat-number')) {
+                        const id = entry.target.id;
+                        const endValue = id === 'client-count' ? 50 : 
+                                          id === 'reach-count' ? 60 : 
+                                          id === 'users-count' ? 20 : 0;
+                        const suffix = id === 'reach-count' || id === 'users-count' ? 'M' : '+';
+                        animateValue(id, 0, endValue, 2000, suffix);
+                    }
+                    
+                    // Animate pricing numbers when they come into view
+                    if (entry.target.id === 'single-video-price') {
+                        animateValue('single-video-price', 0, 2000, 1500);
+                    }
+                    if (entry.target.id === 'four-video-price') {
+                        animateValue('four-video-price', 0, 6000, 1500);
+                    }
+                    if (entry.target.id === 'monthly-price') {
+                        animateValue('monthly-price', 0, 10000, 1500);
+                    }
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        // Observe all elements that should animate on scroll
+        document.querySelectorAll('.process-item, .pricing-card, .team-card, .testimonial-card, .contact-card, .stat-number, .plan-price').forEach(item => {
+            observer.observe(item);
+        });
+
+        // Floating elements animation
+        const floatingElements = document.querySelectorAll('.floating-element');
+        floatingElements.forEach(el => {
+            const duration = Math.random() * 10 + 10; // Random duration between 10-20s
+            const delay = Math.random() * 5; // Random delay up to 5s
+            el.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
+        });
+
+        // Add keyframes for floating animation
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes float {
+                0% { transform: translate(0, 0) rotate(0deg); }
+                25% { transform: translate(20px, 20px) rotate(5deg); }
+                50% { transform: translate(0, 40px) rotate(0deg); }
+                75% { transform: translate(-20px, 20px) rotate(-5deg); }
+                100% { transform: translate(0, 0) rotate(0deg); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Fix stats display on mobile
+        function checkStatsVisibility() {
+            const stats = document.querySelector('.stats');
+            if (window.innerWidth <= 768) {
+                stats.style.flexDirection = 'row';
+                stats.style.flexWrap = 'wrap';
+            }
+        }
+        window.addEventListener('resize', checkStatsVisibility);
+        checkStatsVisibility(); // Run on load
+    </script>
+</body>
+</html>
